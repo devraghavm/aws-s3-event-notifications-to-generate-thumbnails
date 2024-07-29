@@ -12,7 +12,7 @@ resource "aws_lambda_function" "lambda" {
   function_name = "thumbnail-generator"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "main"
-  runtime       = "go1.x"
+  runtime       = "provided.al2023"
   timeout       = 15
 }
 
