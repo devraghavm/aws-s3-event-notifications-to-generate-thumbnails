@@ -40,6 +40,7 @@ jobs:
         run: terraform fmt -check
 
       # Generates an execution plan for Terraform
+      # Make sure AWS_ACCOUNT_ID is set in your repository secrets
       - name: Terraform Plan
         run: |
           terraform plan -out=plan -input=false -var-file="variables.tfvars" -var account_id=${{ secrets.AWS_ACCOUNT_ID }}
