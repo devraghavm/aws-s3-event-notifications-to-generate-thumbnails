@@ -19,5 +19,5 @@ resource "aws_s3_bucket_notification" "images_put_notification" {
     filter_prefix = "images/"
     events        = ["s3:ObjectCreated:*"]
   }
-  depends_on = [aws_sns_topic.topic]
+  depends_on = [aws_sns_topic.topic, aws_lambda_function.lambda]
 }
