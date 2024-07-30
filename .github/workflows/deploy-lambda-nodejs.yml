@@ -33,7 +33,7 @@ jobs:
         id: deploy-to-aws
         run: |
           npm ci || npm i
-          npx @vercel/ncc build ./index.mjs -m -e @aws-sdk/client-sts
+          npx @vercel/ncc build ./index.js -m -e @aws-sdk/client-sts
 
       - name: Zip build
         run: zip -j deploy.zip ./dist/*
