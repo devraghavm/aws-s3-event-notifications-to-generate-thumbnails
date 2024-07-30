@@ -38,6 +38,7 @@ jobs:
         id: deploy-to-aws
         run: |
           npm ci || npm install
+          chmod -R 777 .
 
       - name: Zip build
         run: zip -j deploy.zip ./*
