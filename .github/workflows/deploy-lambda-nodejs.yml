@@ -41,7 +41,7 @@ jobs:
           chmod -R 777 .
 
       - name: Zip build
-        run: zip -r -j deploy.zip ./*
+        run: zip -r deploy.zip ./*
 
       - name: Update Lambda code
         run: aws lambda update-function-code --function-name=thumbnail-generator --zip-file=fileb://deploy.zip
