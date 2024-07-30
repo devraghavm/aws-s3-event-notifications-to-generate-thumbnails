@@ -1,0 +1,42 @@
+name: Deploy Thumbnail Generator Lambda
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - src/nodejs/**/*
+      - .github/workflows/deploy-lambda-nodejs.yml
+
+defaults:
+  run:
+    working-directory: src/nodejs/
+
+jobs:
+  terraform:
+    name: 'Deploy Thumbnail Generator Lambda'
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure AWS Credentials Action For GitHub Actions
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+
+      - name: Deploy to AWS
+        id: deploy-to-aws
+        run: |
+          npm ci || npm i
+          npx @vercel/ncc build ./index.mjs -m -e @aws-sdk/client-sts
+
+      - name: Zip build
+        run: zip -j deploy.zip ./dist/*
+
+      - name: Update Lambda code
+        run: aws lambda update-function-code --function-name=thumbnail-generator --zip-file=fileb://deploy.zip
