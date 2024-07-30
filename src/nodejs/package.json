@@ -2,6 +2,7 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "A sample generate thumbnail lambda to process images uploaded to S3 bucket and convert them to thumbnails.",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

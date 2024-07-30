@@ -32,7 +32,7 @@ jobs:
       - name: Deploy to AWS
         id: deploy-to-aws
         run: |
-          npm ci || npm i
+          npm i
           npx @vercel/ncc build ./index.js -m -e @aws-sdk/client-sts
 
       - name: Zip build
