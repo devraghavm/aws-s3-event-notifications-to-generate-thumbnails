@@ -20,7 +20,7 @@ export const handler = async (event, context) => {
     'Reading options from event:\n',
     util.inspect(event, { depth: 5 })
   );
-  const record = event.Records[0].Sns.Message;
+  const record = event.Records[0].Sns.Message.Records[0];
   const srcBucket = record.s3.bucket.name;
 
   // Object key may have spaces or unicode non-ASCII characters
