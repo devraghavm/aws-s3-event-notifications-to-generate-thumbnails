@@ -1,4 +1,4 @@
-name: Deploy Thumbnail Generator Lambda
+name: Deploy Thumbnail Generator Lambda Node.js
 on:
   push:
     branches:
