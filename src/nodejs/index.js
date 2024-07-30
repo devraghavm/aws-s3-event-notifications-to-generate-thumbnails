@@ -28,7 +28,8 @@ export const handler = async (event, context) => {
   // Object key may have spaces or unicode non-ASCII characters
   const srcKey = decodeURIComponent(record.s3.object.key.replace(/\+/g, ' '));
   const dstBucket = srcBucket;
-  const dstKey = `thumbnails/${srcKey}_thumbnail.png`;
+  const srcFilename = srcKey.split('/').pop().split('.')[0];
+  const dstKey = `thumbnails/${srcFilename}_thumbnail.png`;
 
   // Infer the image type from the file suffix
   const typeMatch = srcKey.match(/\.([^.]*)$/);
