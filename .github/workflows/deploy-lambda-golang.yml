@@ -1,4 +1,4 @@
-name: Deploy Thumbnail Generator Lambda
+name: Deploy Thumbnail Generator Lambda Golang
 on:
   push:
     branches:
